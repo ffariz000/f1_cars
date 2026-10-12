@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formula 1 | Speed Builds Legends</title>
+
+    <style>
+        /* GENERAL SETTINGS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080b0e;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .red {
+            color: #ff253a;
+        }
+
+        .section {
+            padding: 75px 0;
+            border-bottom: 1px solid #24282d;
+        }
+
+        .section-label {
+            color: #ff253a;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.15;
+            margin: 10px 0 20px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .section-description {
+            color: #b7bdc5;
+            max-width: 650px;
+            margin-bottom: 30px;
+        }
+
+        /* NAVIGATION */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8, 11, 14, 0.96);
+            border-bottom: 1px solid #292d32;
+            backdrop-filter: blur(12px);
+        }
+
+        nav {
+            min-height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            font-style: italic;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #ff253a;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: bold;
+            color: #d4d8dd;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff253a;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 590px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(8, 11, 14, 0.98) 0%,
+                    rgba(8, 11, 14, 0.85) 35%,
+                    rgba(8, 11, 14, 0.15) 100%
+                ),
+                url("https://images.unsplash.com/photo-1532906619279-a4b7267faa66?auto=format&fit=crop&w=1800&q=85")
+                center 55% / cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            padding: 90px 0;
+        }
+
+        .hero-label {
+            color: #ff253a;
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .hero h1 {
+            font-size: clamp(44px, 7vw, 82px);
+            line-height: 0.98;
+            margin: 20px 0;
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: #ff253a;
+        }
+
+        .hero p {
+            max-width: 490px;
+            color: #d2d5da;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 13px 24px;
+            background: #ff253a;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #d90020;
+            transform: translateY(-3px);
+        }
+
+        .button-outline {
+            background: transparent;
+            border: 1px solid #555b63;
+            margin-left: 10px;
+        }
+
+        .button-outline:hover {
+            border-color: #ff253a;
+        }
+
+        /* ABOUT SECTION */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 55px;
+        }
+
+        .about-image {
+            height: 370px;
+            border-radius: 8px;
+            background:
+                linear-gradient(0deg, rgba(0,0,0,0.15), transparent),
+                url("https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1000&q=85")
+                center / cover no-repeat;
+            border-left: 5px solid #ff253a;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .stat {
+            border-left: 1px solid #444950;
+            padding-left: 15px;
+        }
+
+        .stat h3 {
+            color: #ff253a;
+            font-size: 32px;
+        }
+
+        .stat p {
+            font-size: 12px;
+            color: #b7bdc5;
+        }
+
+        /* FEATURES */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 35px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            background: #0e1217;
+            border: 1px solid #262c33;
+            border-radius: 7px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: #ff253a;
+            transform: translateY(-6px);
+        }
+
+        .feature-icon {
+            font-size: 34px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #aeb5be;
+            font-size: 14px;
+        }
+
+        /* TEAMS SECTION */
+        .teams-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-top: 35px;
+        }
+
+        .team-card {
+            min-height: 210px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 22px;
+            border-radius: 7px;
+            border: 1px solid #343940;
+            background: linear-gradient(145deg, #222831, #0c0f13);
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .team-card::before {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: var(--team-color);
+        }
+
+        .team-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--team-color);
+        }
+
+        .team-number {
+            color: var(--team-color);
+            font-size: 40px;
+            font-weight: 900;
+            opacity: 0.9;
+        }
+
+        .team-card h3 {
+            font-size: 21px;
+        }
+
+        .team-card p {
+            color: #aeb5be;
+            font-size: 13px;
+        }
+
+        /* RACING GALLERY */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 35px;
+        }
+
+        .gallery-card {
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 7px;
+            background: #161b21;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 35px 18px 18px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            font-weight: bold;
+        }
+
+        /* CONTACT */
+        .contact-box {
+            padding: 45px;
+            background: linear-gradient(120deg, #171b21, #0d1014);
+            border: 1px solid #292e35;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contact-box p {
+            color: #b7bdc5;
+            margin: 15px auto 25px;
+            max-width: 550px;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 30px 0;
+            color: #9199a3;
+            font-size: 13px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* MOBILE RESPONSIVE DESIGN */
+        @media (max-width: 850px) {
+            .nav-links {
+                gap: 14px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .teams-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                background-position: center;
+            }
+        }
+
+        @media (max-width: 550px) {
+            nav {
+                padding: 15px 0;
+                flex-direction: column;
+            }
+
+            .nav-links {
+                gap: 16px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: 500px;
+            }
+
+            .hero-content {
+                padding: 65px 0;
+            }
+
+            .hero h1 {
+                font-size: 47px;
+            }
+
+            .section {
+                padding: 55px 0;
+            }
+
+            .features-grid,
+            .teams-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                height: 260px;
+            }
+
+            .stats {
+                gap: 10px;
+            }
+
+            .stat h3 {
+                font-size: 25px;
+            }
+
+            .button-outline {
+                margin: 12px 0 0;
+            }
+
+            .contact-box {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header>
+        <nav class="container">
+            <a href="#home" class="logo">
+                <span>F1</span> RACING.
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#features">FEATURES</a></li>
+                <li><a href="#teams">TEAMS</a></li>
+                <li><a href="#gallery">GALLERY</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+
+                <div class="hero-label">WELCOME TO FORMULA 1</div>
+
+                <h1>
+                    SPEED<br>
+                    <span>BUILDS</span><br>
+                    LEGENDS.
+                </h1>
+
+                <p>
+                    Experience the ultimate world of motorsport.
+                    Discover incredible machines, fearless drivers,
+                    advanced technology, and the passion of Formula 1.
+                </p>
+
+                <a href="#about" class="button">EXPLORE F1 →</a>
+                <a href="#teams" class="button button-outline">OUR TEAMS</a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section" id="about">
+        <div class="container about-grid">
+
+            <div class="about-image"></div>
+
+            <div>
+                <div class="section-label">ABOUT FORMULA 1</div>
+
+                <h2 class="section-title">
+                    THE PINNACLE<br>
+                    OF MOTORSPORT
+                </h2>
+
+                <p class="section-description">
+                    Formula 1 is the highest class of international
+                    single-seater motor racing. It brings together
+                    world-class drivers, engineering excellence, and
+                    legendary circuits across the globe.
+                </p>
+
+                <p class="section-description">
+                    Every millisecond matters. From aerodynamic design
+                    to lightning-fast pit stops, every detail can
+                    make the difference between victory and defeat.
+                </p>
+
+                <div class="stats">
+                    <div class="stat">
+                        <h3>350+</h3>
+                        <p>KM/H SPEED</p>
+                    </div>
+
+                    <div class="stat">
+                        <h3>20+</h3>
+                        <p>DRIVERS</p>
+                    </div>
+
+                    <div class="stat">
+                        <h3>24</h3>
+                        <p>RACES*</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="section" id="features">
+        <div class="container">
+
+            <div class="section-label">THE WORLD OF F1</div>
+
+            <h2 class="section-title">WHAT MAKES F1 SPECIAL?</h2>
+
+            <p class="section-description">
+                More than racing. A combination of speed, strategy,
+                precision, and cutting-edge innovation.
+            </p>
+
+            <div class="features-grid">
+
+                <div class="feature-card">
+                    <div class="feature-icon">🏎️</div>
+                    <h3>INCREDIBLE SPEED</h3>
+                    <p>
+                        F1 cars are engineering masterpieces built
+                        to deliver extraordinary performance on track.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>ADVANCED TECHNOLOGY</h3>
+                    <p>
+                        Aerodynamics, hybrid power units, and data
+                        engineering push racing technology forward.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>CHAMPIONSHIP BATTLES</h3>
+                    <p>
+                        Drivers and teams compete throughout the season
+                        to earn points and fight for championship glory.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>PIT STOP PRECISION</h3>
+                    <p>
+                        Every second counts when crews change tyres
+                        and help drivers return to the track.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>GLOBAL RACING</h3>
+                    <p>
+                        From historic circuits to spectacular night
+                        races, F1 travels around the world.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>RACE STRATEGY</h3>
+                    <p>
+                        Tyre choices, timing, weather, and split-second
+                        decisions can change the entire race.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAMS SECTION -->
+    <section class="section" id="teams">
+        <div class="container">
+
+            <div class="section-label">ICONIC CONSTRUCTORS</div>
+
+            <h2 class="section-title">THE POWERHOUSES OF F1</h2>
+
+            <p class="section-description">
+                Meet some of the famous names that have helped
+                shape the history of Formula 1.
+            </p>
+
+            <div class="teams-grid">
+
+                <div class="team-card" style="--team-color: #ff303b;">
+                    <div class="team-number">01</div>
+                    <h3>Ferrari</h3>
+                    <p>Passion. Heritage. Racing.</p>
+                </div>
+
+                <div class="team-card" style="--team-color: #00d2be;">
+                    <div class="team-number">02</div>
+                    <h3>Mercedes</h3>
+                    <p>Precision. Performance.</p>
+                </div>
+
+                <div class="team-card" style="--team-color: #367cff;">
+                    <div class="team-number">03</div>
+                    <h3>Red Bull Racing</h3>
+                    <p>Energy. Speed. Ambition.</p>
+                </div>
+
+                <div class="team-card" style="--team-color: #ff8b35;">
+                    <div class="team-number">04</div>
+                    <h3>McLaren</h3>
+                    <p>Innovation. Racing spirit.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section class="section" id="gallery">
+        <div class="container">
+
+            <div class="section-label">BEYOND THE LIMIT</div>
+
+            <h2 class="section-title">THE RACING GALLERY</h2>
+
+            <p class="section-description">
+                Feel the atmosphere, intensity, and excitement
+                that make motorsport unforgettable.
+            </p>
+
+            <div class="gallery-grid">
+
+                <div class="gallery-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1532906619279-a4b7267faa66?auto=format&fit=crop&w=800&q=85"
+                        alt="Motorsport racing scene"
+                        loading="lazy"
+                    >
+                    <div class="gallery-caption">PURE SPEED</div>
+                </div>
+
+                <div class="gallery-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=85"
+                        alt="High performance car"
+                        loading="lazy"
+                    >
+                    <div class="gallery-caption">ENGINEERING EXCELLENCE</div>
+                </div>
+
+                <div class="gallery-card">
+                    <img
+                        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=85"
+                        alt="Sports car detail"
+                        loading="lazy"
+                    >
+                    <div class="gallery-caption">DESIGNED TO PERFORM</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section" id="contact">
+        <div class="container">
+
+            <div class="contact-box">
+                <div class="section-label">JOIN THE GRID</div>
+
+                <h2 class="section-title">
+                    RACING NEVER STOPS.
+                </h2>
+
+                <p>
+                    Explore the technology, discover the teams,
+                    and celebrate the incredible world of motorsport.
+                    The next racing story starts here.
+                </p>
+
+                <a
+                    href="https://www.formula1.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="button"
+                >
+                    VISIT OFFICIAL F1 →
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+
+            <a href="#home" class="logo">
+                <span>F1</span> RACING.
+            </a>
+
+            <p>
+                Built for the love of speed.
+            </p>
+
+            <p>
+                &copy; 2026 F1 Racing Fan Website.
+            </p>
+
+        </div>
+    </footer>
+
+</body>
+</html>
